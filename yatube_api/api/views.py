@@ -1,7 +1,6 @@
-from rest_framework import viewsets, permissions, exceptions, pagination, filters, status
-from rest_framework.decorators import action
+from rest_framework import viewsets, permissions, pagination, status
 from rest_framework.response import Response
-from posts.models import Group, Post, Comment, Follow, User
+from posts.models import Group, Post, Comment, Follow
 from .serializers import (
     GroupSerializer,
     PostSerializer,
@@ -36,7 +35,8 @@ class PostViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав для "
+                 "выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         return super().update(request, *args, **kwargs)
@@ -45,7 +45,8 @@ class PostViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав для "
+                 "выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         return super().partial_update(request, *args, **kwargs)
@@ -54,7 +55,8 @@ class PostViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав "
+                 "для выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         self.perform_destroy(instance)
@@ -79,7 +81,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав "
+                 "для выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         return super().update(request, *args, **kwargs)
@@ -88,7 +91,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав "
+                 "для выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         return super().partial_update(request, *args, **kwargs)
@@ -97,7 +101,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if instance.author != request.user:
             return Response(
-                {"detail": "У вас недостаточно прав для выполнения данного действия."},
+                {"detail": "У вас недостаточно прав "
+                 "для выполнения данного действия."},
                 status=status.HTTP_403_FORBIDDEN
             )
         self.perform_destroy(instance)
